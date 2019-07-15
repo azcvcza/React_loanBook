@@ -1,23 +1,52 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+//暂定传入的数据结构
+const items = [
+{
+  "id":1,
+  "title":"go to 云南",
+  "price":200,
+  "date":"2018-09-10",
+  "category":{
+    "id":"1",
+    "name":"旅行",
+    "type":"outcome",
+  }
+},
+{
+  "id":2,
+  "title":"go to 深圳",
+  "price":300,
+  "date":"2018-01-10",
+  "category":{
+    "id":"2",
+    "name":"旅行",
+    "type":"income",
+  }
+},
+{
+  "id":3,
+  "title":"go to fuck",
+  "price":400,
+  "date":"2018-04-01",
+  "category":{
+    "id":"3",
+    "name":"旅行",
+    "type":"outcome",
+  }
+},
+]
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Welcome to React World
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        
       </header>
     </div>
   );
