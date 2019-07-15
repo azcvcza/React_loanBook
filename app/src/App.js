@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PriceList from './components/PriceList'
 //暂定传入的数据结构
 const items = [
 {
@@ -48,6 +49,11 @@ function App() {
         </p>
         
       </header>
+      <PriceList 
+        items={items}
+        onModifyItem={(item)=>{console.log(item.id)}}
+        onDeleteItem={(item)=>{console.log('delete:'+item.id)}}
+      ></PriceList>
     </div>
   );
 }
