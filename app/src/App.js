@@ -4,6 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PriceList from './components/PriceList';
 import ViewTab from './components/ViewTab';
+import MonthPicker from './components/MonthPicker';
 import{LIST_VIEW,CHART_VIEW} from './utility';
 //暂定传入的数据结构
 const items = [
@@ -54,10 +55,12 @@ function App() {
         </p>
         
       </header>
+      <MonthPicker year={2019} month={7}></MonthPicker>
       <ViewTab
         activeTab={LIST_VIEW}
         onTabChange={(view)=>{console.log(view)}}
       ></ViewTab>
+      
       <PriceList 
         items={items}
         onModifyItem={(item)=>{console.log(item.id)}}
