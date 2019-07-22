@@ -55,7 +55,11 @@ function App() {
         </p>
         
       </header>
-      <MonthPicker year={2019} month={7}></MonthPicker>
+      <MonthPicker
+        year={2019}
+        month={7}
+        onChange = {(year,month)=>{console.log(year,month)}}
+       ></MonthPicker>
       <ViewTab
         activeTab={LIST_VIEW}
         onTabChange={(view)=>{console.log(view)}}

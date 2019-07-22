@@ -5,7 +5,8 @@ class MonthPicker extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			isOpen:false
+			isOpen:false,
+			selectedYear:this.props.year,
 		}
 	}
 	toggleDropdown = (e)=>{
@@ -14,9 +15,24 @@ class MonthPicker extends React.Component{
 			isOpen:!this.state.isOpen
 		})
 	}
+	selectYear = (event,yearNumber) =>{
+		event.preventDefault();
+		this.setState({
+			selectedYear:yearNumber
+		})
+
+	}
+	selectMonth = (event,monthNumber)=>{
+		event.preventDefault();
+		this.setState({
+			isOpen:false
+		});
+		this.props.onChange(this.state.selectedYear,monthNumber);
+	}
 	render(){
 		const {year,month} = this.props;
 		const {isOpen} = this.state;
+		const {selectedYear} = this.state;
 		const monthRange = range(12,1);
 		const yearRange = range(9,-4).map((number)=> {return number+year});
 		return (
@@ -36,7 +52,8 @@ class MonthPicker extends React.Component{
 									yearRange.map((yearNumber,index)=>
 									<a href="#" 
 									key={index} 
-									className={(yearNumber === year)?'dropdown-item active':'dropdown-item'}>{yearNumber} 年</a>
+									onClick={(e)=>{this.selectedYear = this.selectYear(e,yearNumber)}}
+									className={(yearNumber === selectedYear)?'dropdown-item active':'dropdown-item'}>{yearNumber} 年</a>
 									)
 								}
 							</div>
@@ -45,6 +62,7 @@ class MonthPicker extends React.Component{
 									monthRange.map((monthNumber,index)=>
 									<a href='#' 
 									key={index} 
+									onClick={(e)=>{this.selectMonth(e,monthNumber)}}
 									className={(monthNumber===month)?'dropdown-item active':'dropdown-item'}>{padLeft(monthNumber)}月</a>
 									)
 								}
@@ -55,5 +73,10 @@ class MonthPicker extends React.Component{
 			</div>
 		)
 	}
+}
+MonthPicker.propTypes = {
+	year: PropTypes.number.isRequired,
+	month: PropTypes.number.isRequired,
+	onChange: PropTypes.func.isRequired,
 }
 export default MonthPicker;
