@@ -2,10 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PriceList from './components/PriceList';
-import ViewTab from './components/ViewTab';
-import MonthPicker from './components/MonthPicker';
-import{LIST_VIEW,CHART_VIEW} from './utility';
+import Home from './containers/Home'
 //暂定传入的数据结构
 const items = [
 {
@@ -48,28 +45,7 @@ const items = [
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to React World
-        </p>
-        
-      </header>
-      <MonthPicker
-        year={2019}
-        month={7}
-        onChange = {(year,month)=>{console.log(year,month)}}
-       ></MonthPicker>
-      <ViewTab
-        activeTab={LIST_VIEW}
-        onTabChange={(view)=>{console.log(view)}}
-      ></ViewTab>
-      
-      <PriceList 
-        items={items}
-        onModifyItem={(item)=>{console.log(item.id)}}
-        onDeleteItem={(item)=>{console.log('delete:'+item.id)}}
-      ></PriceList>
+      <Home />
     </div>
   );
 }
