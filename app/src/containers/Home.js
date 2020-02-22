@@ -50,9 +50,7 @@ class Home extends React.Component {
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
 					<p>
-						Welcome to React World
-        </p>
-
+						Welcome to React World</p>
 				</header>
 				<MonthPicker
 					year={2019}
