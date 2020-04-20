@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 const PriceList = ({items,onModifyItem,onDeleteItem})=>{
+	console.log('priceList:', items);
 	return(
 		<ul className = 'list-group list-group-flush'>
 			{
-				items.map((item)=>(
+				items && items.map((item)=>(
 					<li className="list-group-item d-flex justify-content-between align-items-center"
 						key={item.id}
 					>

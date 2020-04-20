@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PriceList from '../components/PriceList';
 import ViewTab from '../components/ViewTab';
 import MonthPicker from '../components/MonthPicker';
-import {LIST_VIEW, CHART_VIEW} from '../utility';
+import CreateButton from '../components/createButton';
+import { LIST_VIEW, CHART_VIEW } from '../utility';
 const items = [
 	{
 		"id": 1,
@@ -44,6 +45,30 @@ const items = [
 	},
 ]
 class Home extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			priceListItems: items,
+		}
+	}
+	componentDidMount() {
+		console.log('this.props:', this.props);
+	}
+	handlePriceListCreate = (item) =>{
+		this.props.history.push(`/create`);
+	}
+	handlePriceListEdit = (item) => {
+		console.log('handlePriceListEdit:', item);
+		this.props.history.push({ pathname: `/edit/${item.id}`, state: item })
+	}
+	handlePriceListDel = (item) => {
+		console.log('handlePriceListDel:', item);
+		const { priceListItems } = this.state;
+		let temp = priceListItems.filter(val => val.id != item.id);
+		this.setState({
+			priceListItems: temp
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -55,17 +80,17 @@ class Home extends React.Component {
 				<MonthPicker
 					year={2019}
 					month={7}
-					onChange={(year, month) => {console.log(year, month)}}
+					onChange={(year, month) => { console.log(year, month) }}
 				></MonthPicker>
 				<ViewTab
 					activeTab={LIST_VIEW}
-					onTabChange={(view) => {console.log(view)}}
+					onTabChange={(view) => { console.log(view) }}
 				></ViewTab>
-
+				<CreateButton onCreateButtonClick={this.handlePriceListCreate}></CreateButton>
 				<PriceList
-					items={items}
-					onModifyItem={(item) => {console.log(item.id)}}
-					onDeleteItem={(item) => {console.log('delete:' + item.id)}}
+					items={this.state.priceListItems}
+					onModifyItem={(item) => { this.handlePriceListEdit(item) }}
+					onDeleteItem={(item) => { this.handlePriceListDel(item) }}
 				></PriceList>
 			</div>
 		)
