@@ -53,8 +53,32 @@ class Home extends React.Component {
 	}
 	componentDidMount() {
 		console.log('this.props:', this.props);
+		if (this.props.location.state && this.props.location.state.cash) {
+			let props = this.props.location.state;
+			const { priceListItems } = this.state;
+			let id = priceListItems[priceListItems.length - 1].id + 1;
+			let title = props.title;
+			let date = props.date;
+			let price = props.cash;
+			let temp = {
+				id: id,
+				title: title,
+				date: date,
+				price: price,
+				category: {
+					id: id,
+					name: props.billType,
+					type: props.submitType,
+					iconName: '',
+				}
+			}
+			priceListItems.push(temp);
+			this.setState({
+				priceListItems: [...priceListItems]
+			})
+		}
 	}
-	handlePriceListCreate = (item) =>{
+	handlePriceListCreate = (item) => {
 		this.props.history.push(`/create`);
 	}
 	handlePriceListEdit = (item) => {
